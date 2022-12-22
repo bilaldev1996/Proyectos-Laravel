@@ -22,7 +22,6 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        
-        Note::factory(50)->create(); // This will create 50 notes.
+        Note::factory(50)->create();
     }
 }

@@ -34,22 +34,4 @@
             </form>
         </div>
     </div>
-    {{-- <a href="{{ route('notes.index') }}">Volver a inicio</a>
-    <form action="{{ route('notes.update',$note->id) }}" method="post">
-        @csrf <!-- Esto es para evitar ataques de tipo CSRF -->
-        @method('put') <!-- Esto es para indicar que el metodo es PUT -->
-        <label>
-            Titulo:
-            <br>
-            <input type="text" name="title" value="{{ $note->title }}">
-        </label>
-        <br>
-        <label>
-            Contenido:
-            <br>
-            <textarea name="content" rows="5">{{ $note->content }}</textarea>
-        </label>
-        <br>
-        <input type="submit" value="Actualizar">
-    </form> --}}
 @endsection

@@ -13,6 +13,7 @@
             </li>
         @endforeach
     </ul>
+    {{ $cursos->links() }} {{-- Paginacion --}}
 @endsection
 
 

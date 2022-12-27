@@ -58,4 +58,43 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+
+    // relacion uno a uno inversa (user tiene un profile)
+    // recupera el profile del usuario
+    public function profile()
+    {
+        return $this->hasOne('App\Models\Profile');
+    }
+
+
+    // relacion uno a muchos (user tiene muchos posts)
+    // recupera los posts del usuario
+    public function posts()
+    {
+        return $this->hasMany('App\Models\Post');
+    }
+
+    public function videos(){
+        return $this->hasMany('App\Models\Video');
+    }
+
+    //relacion uno a muchos con comentarios
+    public function comments(){
+        return $this->hasMany('App\Models\Comment');
+    }
+
+    // relacion muchos a muchos (user tiene muchos roles)
+    // recupera los roles del usuario
+    public function roles()
+    {
+        return $this->belongsToMany('App\Models\Role');
+    }
+
+    // relacion uno a uno polimorfica (user tiene una imagen)
+    // recupera la imagen del usuario
+    public function image()
+    {
+        return $this->morphOne('App\Models\Image', 'imageable');
+    }
 }

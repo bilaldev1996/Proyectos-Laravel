@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::middleware([
     'auth:sanctum',
@@ -25,4 +25,12 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+});
+
+Route::get('prueba', function () {
+    return "Hola mundo desde Laravel 9";
+})->middleware('age');
+
+Route::get('no-autorizado', function () {
+    return "Usted no es mayor de edad";
 });

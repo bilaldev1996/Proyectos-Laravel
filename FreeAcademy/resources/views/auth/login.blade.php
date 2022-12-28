@@ -38,6 +38,10 @@
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif
+                
+                <a href="{{ route('register') }}" class="ml-4 underline text-sm text-gray-600 hover:text-gray-900">
+                    {{ __('Register') }}
+                </a>
 
                 <x-jet-button class="ml-4">
                     {{ __('Log in') }}

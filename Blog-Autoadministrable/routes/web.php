@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PostController;
+use App\Models\Role;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -9,21 +11,17 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::get('/', [PostController::class,'index'])->name('posts.index');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/posts/{post}', [PostController::class,'show'])->name('posts.show');
 
+Route::get('/categories/{category:slug}', [PostController::class,'category'])->name('posts.category');
+
+Route::get('/tags/{tag:slug}', [PostController::class,'tag'])->name('posts.tag');
+
+
+
+// Authentication...
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

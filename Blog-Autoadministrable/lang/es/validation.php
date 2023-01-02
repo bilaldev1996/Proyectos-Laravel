@@ -160,6 +160,10 @@ return [
         'category' => 'categoría',
         'subject' => 'asunto',
         'content' => 'contenido',
+        'date' => 'fecha',
+        'tags' => 'etiquetas',
+        'image' => 'imagen',
+        'extract' => 'extracto',
     ],
 
 ];

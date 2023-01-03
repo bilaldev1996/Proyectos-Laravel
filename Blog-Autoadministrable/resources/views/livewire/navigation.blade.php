@@ -30,7 +30,7 @@
         <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
 
             {{-- Logotipo --}}
-            <a href="/" class="flex flex-shrink-0 items-center" >
+            <a href="{{ route('posts.index') }}" class="flex flex-shrink-0 items-center" >
               <img class="block h-8 w-auto lg:hidden" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
               <img class="hidden h-8 w-auto lg:block" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
             </a>
@@ -62,10 +62,15 @@
               <div>
                 <button x-on:click="open = true" type="button" class="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                   <span class="sr-only hidden">Open user menu</span>
-                  <img class="h-8 w-8 rounded-full" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" alt="">
+                  @if (auth()->user()->image)
+                    <img class="h-8 w-8 rounded-full" src="{{
+                      Storage::url(auth()->user()->image->url)
+                    }}" alt="">
+                  @else
+                    <img class="h-8 w-8 rounded-full" src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y" alt="">
+                  @endif
                 </button>
               </div>
-    
               <!--
                 Dropdown menu, show/hide based on menu state.
     

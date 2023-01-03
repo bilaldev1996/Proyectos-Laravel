@@ -23,7 +23,6 @@
 					{!! Form::label('name', 'Nombre') !!}
 					{!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el nombre de la categoría']) !!}
 				</div>
-				{{-- generar slug --}}
 				<div class="form-group">
 					{!! Form::label('slug', 'Slug') !!}
 					{!! Form::text('slug', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el slug de la categoría', 'readonly']) !!}

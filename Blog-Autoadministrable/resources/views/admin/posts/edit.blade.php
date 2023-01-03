@@ -2,7 +2,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-	<h1>Dashboard</h1>
+	<h1>Editar Post</h1>
 @stop
 
 @section('content')
@@ -11,19 +11,11 @@
 			<strong>{{ session('info') }}</strong>
 		</div>
 	@endif
-	@if ($errors->any())
-		<div class="alert alert-danger" role="alert">
-			<ul>
-				@foreach ($errors->all() as $error)
-					<li>{{ $error }}</li>
-				@endforeach
-			</ul>
-		</div>
-	@endif
 	<div class="card">
 		<div class="card-body">
 			{!! Form::model($post, ['route' => ['admin.posts.update', $post], 'autocomplete' => 'off', 'files' => true, 'method' => 'put']) !!}
 				@include('admin.posts.partials.form')
+			{!! Form::submit('Actualizar post', ['class' => 'btn btn-primary']) !!}
 			{!! Form::close() !!}
 		</div>
 	</div>

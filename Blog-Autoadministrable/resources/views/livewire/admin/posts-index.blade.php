@@ -1,5 +1,10 @@
 <div>
     <div class="card">
+        @if (session('info'))
+            <div class="alert alert-success">
+                <strong>{{ session('info') }}</strong>
+            </div>
+        @endif
         <div class="card-header">
             <input wire:model="search" class="form-control" placeholder="Ingrese el nombre de un post">
         </div>
@@ -18,6 +23,9 @@
                             <tr>
                                 <td>{{ $post->id }}</td>
                                 <td>{{ $post->name }}</td>
+                                <td width="10px">
+                                    <a class="btn btn-secondary btn-sm" href="{{ route('admin.posts.show', $post) }}">Ver</a>
+                                </td>
                                 <td width="10px">
                                     <a class="btn btn-primary btn-sm" href="{{ route('admin.posts.edit', $post) }}">Editar</a>
                                 </td>

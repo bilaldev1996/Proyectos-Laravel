@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Post extends Model
 {
     use HasFactory;
@@ -38,4 +39,15 @@ class Post extends Model
     public function image(){
         return $this->morphOne('App\Models\Image', 'imageable');
     }
+
+    public function getGetImageAttribute(){
+        if($this->image){
+            return url("storage/" . $this->image->url);
+        }else{
+            /* imagen aleatoria */
+            $random = random_int(1,1084);
+            return "https://picsum.photos/id/$random/500/300";
+        }
+    }
+
 }

@@ -6,13 +6,12 @@
 @stop
 
 @section('content')
-	<p>Welcome to this beautiful admin panel.</p>
+	<div class="card">
+		<div class="card-body">
+			<p><strong>Nombre: </strong>{{$category->name}}</p>
+			<p><strong>Slug: </strong>{{$category->slug}}</p>
+			<p><strong>Color: </strong>{{$category->color}}</p>
+		</div>
+	</div>
 @stop
 
-@section('css')
-	<link rel="stylesheet" href="/css/admin_custom.css">
-@stop
-
-@section('js')
-	<script> console.log('Hi!'); </script>
-@stop

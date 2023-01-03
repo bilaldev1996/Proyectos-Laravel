@@ -43,7 +43,7 @@ class PostController extends Controller
     public function store(StorePostRequest $request)
     {
         $post = Post::create($request->all());
-
+        
         if($request->status == 'PUBLISHED'){
             $post->tags()->attach($request->tags);
         }
@@ -59,7 +59,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return view('admin.posts.show',compact('post'));
     }
 
     /**
@@ -84,7 +84,15 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $post->update($request->all());
+
+        if($request->status == 'PUBLISHED'){
+            $post->tags()->sync($request->tags);
+        }else{
+            $post->tags()->detach();
+        }
+
+        return redirect()->route('admin.posts.edit', $post)->with('info','El post se actualizó con éxito');
     }
 
     /**
@@ -95,6 +103,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect()->route('admin.posts.index')->with('info','El post se eliminó con éxito');
     }
 }

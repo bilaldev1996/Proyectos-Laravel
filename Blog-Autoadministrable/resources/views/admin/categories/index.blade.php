@@ -30,6 +30,9 @@
 							<td>{{ $category->id }}</td>
 							<td>{{ $category->name }}</td>
 							<td width="10px">
+								<a href="{{ route('admin.categories.show', $category) }}" class="btn btn-secondary btn-sm">Ver</a>
+							</td>
+							<td width="10px">
 								<a href="{{ route('admin.categories.edit', $category) }}" class="btn btn-primary btn-sm">Editar</a>
 							</td>
 							<td width="10px">

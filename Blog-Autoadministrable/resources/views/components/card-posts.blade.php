@@ -2,7 +2,7 @@
 @props(['post'])
 
 <article class="mt-8 bg-white shadow-lg rounded-lg overflow-hidden ">
-    <img class="w-full h-80 object-cover object-center" src="{{ Storage::url($post->image->url) }}" alt="">
+        <img class="w-full h-80 object-cover object-center" src="{{ $post->getGetImageAttribute() }}" alt="">
 
     <div class="px-6 py-4 ">
         <h1 class="font-bold text-xl mb-2">
@@ -11,7 +11,7 @@
             </a>
         </h1>
         <div class="text-gray-700 text-base">
-            {{ $post->extract }}
+            {!! $post->extract !!}
         </div>
     </div>
     <div class="px-6 pt-4 pb-2 mb-2">

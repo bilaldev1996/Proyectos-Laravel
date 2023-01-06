@@ -11,7 +11,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::where('status','PUBLISHED')->latest('id')->paginate(8);
+        $posts = Post::where('status','PUBLISHED')->latest('id')->paginate(14);
         return view('posts.index', compact('posts'));
     }
 

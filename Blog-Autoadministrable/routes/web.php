@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\EmailVerify;
+use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\PostController;
 use App\Models\Role;
 use Illuminate\Auth\Events\PasswordReset;
@@ -30,11 +32,11 @@ Route::middleware([
     Route::get('/', [PostController::class,'index'])->name('posts.index');
 });
 
+
+
 // Verify Email...
 
-Route::get('/email/verify', function () {
-    return view('auth.verify-email');
-})->middleware('auth')->name('verification.notice');
+Route::get('/email/verify',[EmailVerify::class,'verify'])->middleware('auth')->name('verification.notice');
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
@@ -92,3 +94,8 @@ Route::post('/reset-password', function (Request $request) {
                 ? redirect()->route('login')->with('status', __($status))
                 : back()->withErrors(['email' => [__($status)]]);
 })->middleware('guest')->name('password.update');
+
+
+//login with google
+Route::get('/login/google', [GoogleController::class, 'redirectToGoogle'])->name('login.google');
+Route::get('callback/google', [GoogleController::class, 'handleGoogleCallback']);

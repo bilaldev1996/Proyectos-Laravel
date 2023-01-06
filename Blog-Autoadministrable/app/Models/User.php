@@ -27,6 +27,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'social_id',
+        'social_type',
     ];
 
     /**
@@ -63,6 +65,26 @@ class User extends Authenticatable implements MustVerifyEmail
     public function posts()
     {
         return $this->hasMany('App\Models\Post');
+    }
+
+    public function sendEmailVerificationNotification()
+    {
+        if ($this->social_type === 'google') {
+            return;
+        }
+
+        parent::sendEmailVerificationNotification();
+    }
+
+    public function hasVerifiedEmail()
+    {
+        // Si el usuario inició sesión con Google, siempre devuelve true
+        if ($this->social_type === 'google') {
+            return true;
+        }
+
+        // Si el usuario no inició sesión con Google, devuelve el valor original del método
+        return parent::hasVerifiedEmail();
     }
 }
 

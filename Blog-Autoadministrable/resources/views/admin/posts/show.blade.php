@@ -23,7 +23,7 @@
 					<img src="{{Storage::url($post->file)}}" alt="" style="width: 300px">
 				@endif
 			</p>
-			<p><strong>Contenido: </strong>{!! $post->body !!}</</p>
+			<p><strong>Contenido: </strong>{!! $post->body !!}</p>
 		</div>
 	</div>
 @stop

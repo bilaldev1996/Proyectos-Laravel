@@ -29,7 +29,9 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/', [PostController::class,'index'])->name('posts.index');
+    Route::get('/posts',function(){
+        return redirect()->route('/posts');
+    });
 });
 
 

@@ -12,6 +12,9 @@ class PostsIndex extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $search = '';
+    public $status = '';
+    
+    
 
     public function updatingSearch()
     {
@@ -22,9 +25,11 @@ class PostsIndex extends Component
     {
         $posts = Post::where('user_id', auth()->user()->id) 
                 ->where('name', 'LIKE', '%' . $this->search . '%')
+                ->where('status', 'LIKE', '%' . $this->status . '%')
                 ->latest('id')
                 ->paginate(14);
         return view('livewire.admin.posts-index', compact('posts'));
     }
+
     
 }

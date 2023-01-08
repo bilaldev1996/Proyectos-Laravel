@@ -9,3 +9,7 @@
 @section('content')
     @livewire('admin.posts-index')
 @stop
+
+@section('css')
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.3/dist/tailwind.min.css" rel="stylesheet">
+@stop

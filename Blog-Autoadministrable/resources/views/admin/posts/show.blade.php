@@ -10,7 +10,7 @@
 		<div class="card-body">
 			<p><strong>Nombre: </strong>{{$post->name}}</p>
 			<p><strong>Slug: </strong>{{$post->slug}}</p>
-			<p><strong>Extracto: </strong>{!! $post->extract !!}</p>
+			<strong>Extracto: </strong>{!! $post->extract !!}
 			<p><strong>Categoría: </strong>{{$post->category->name}}</p>
 			<p><strong>Etiquetas: </strong>
 				@foreach ($post->tags as $tag)
@@ -19,11 +19,12 @@
 			</p>
 			<p><strong>Estado: </strong>{{$post->status}}</p>
 			<p><strong>Imagen: </strong>
-				@if ($post->file)
-					<img src="{{Storage::url($post->file)}}" alt="" style="width: 300px">
+				<br>
+				@if ($post->image)
+					<img src="{{$post->getGetImageAttribute()}}" alt="" style="width: 300px">
 				@endif
 			</p>
-			<p><strong>Contenido: </strong>{!! $post->body !!}</p>
+			<strong>Contenido: </strong>{!! $post->body !!}
 		</div>
 	</div>
 @stop

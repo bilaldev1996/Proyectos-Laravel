@@ -1,13 +1,12 @@
-{{-- crear formulario --}}
 @if ($errors->any())
-		<div class="alert alert-danger" role="alert">
-			<ul>
-				@foreach ($errors->all() as $error)
-					<li>{{ $error }}</li>
-				@endforeach
-			</ul>
-		</div>
-	@endif
+	<div class="alert alert-danger" role="alert">
+		<ul>
+			@foreach ($errors->all() as $error)
+				<li>{{ $error }}</li>
+			@endforeach
+		</ul>
+	</div>
+@endif
 
 <div class="form-group">
     {!! Form::label('name', 'Nombre') !!}
@@ -34,7 +33,11 @@
 <div class="row mb-3">
 	<div class="col">
 		<div class="image-wrapper">
-			<img id="picture" src="https://cdn.pixabay.com/photo/2022/12/20/11/17/hiking-7667621_960_720.jpg" alt="imagen">
+			@isset($post->image)
+				<img id="picture" src="{{ $post->getGetImageAttribute() }}" alt="">
+			@else
+				<img id="picture" src="https://cdn.pixabay.com/photo/2022/12/20/11/17/hiking-7667621_960_720.jpg" alt="imagen">
+			@endisset
 		</div>
 	</div>
 	<div class="col">

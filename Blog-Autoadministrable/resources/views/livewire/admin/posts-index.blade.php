@@ -7,6 +7,16 @@
         @endif
         <div class="card-header">
             <input wire:model="search" class="form-control" placeholder="Ingrese el nombre de un post">
+            
+            <div class="absolute inline-block text-center right-5 top-20">
+                <select class="shadow rounded-md bg-white border border-gray-400 py-2 px-4 pr-8 leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition duration-150 ease-in-out" wire:model="status">
+                    <option value="published">Publicados</option>
+                    <option value="draft">Borradores</option>
+                    <option value="">Todos</option>
+                </select>
+                
+            </div>
+            
         </div>
         @if ($posts->count())
             <div class="card-body">

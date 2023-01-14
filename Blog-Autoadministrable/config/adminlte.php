@@ -315,19 +315,35 @@ return [
             'text'        => 'Dashboard',
             'route'       => 'admin.home',
             'icon'        => 'fas fa-fw fa-tachometer-alt',
+            'can'         => 'admin.home',
         ],
-        ['header' => 'ADMINISTRADOR'],
+        [
+            'text' => 'Usuarios',
+            'route' => 'admin.users.index',
+            'icon'  => 'fas fa-fw fa-users',
+            'active' => ['admin/users*'],
+            'can'     => 'admin.users.index',
+        ],
+        [
+            'text' => 'Lista de roles',
+            'route' => 'admin.roles.index',
+            'icon'  => 'fas fa-fw fa-user-cog',
+            'active' => ['admin/roles*'],
+            //'can'     => 'admin.roles.index',
+        ],
         [
             'text' => 'Categorías',
             'route'  => 'admin.categories.index',
             'icon' => 'fas fa-fw fa-list',
-            'active' => ['admin/categories*']
+            'active' => ['admin/categories*'],
+            'can'    => 'admin.categories.index',
         ],
         [
             'text' => 'Etiquetas',
             'route'  => 'admin.tags.index',
             'icon' => 'fas fa-fw fa-tags',
-            'active' => ['admin/tags*']
+            'active' => ['admin/tags*'],
+            'can'    => 'admin.tags.index',
         ],
 
         ['header' => 'OPCIONES DEL BLOG'],
@@ -335,13 +351,15 @@ return [
             'text' => 'Entradas',
             'route'  => 'admin.posts.index',
             'icon' => 'fas fa-fw fa-file-alt',
-            'active' => ['admin/posts/index']
+            'active' => ['admin/posts/index'],
+            'can'    => 'admin.posts.index',
         ],
         [
             'text' => 'Nueva Entrada',
             'route'  => 'admin.posts.create',
             'icon' => 'fas fa-fw fa-plus',
-            'active' => ['admin/posts/create']
+            'active' => ['admin/posts/create'],
+            'can'    => 'admin.posts.create',
         ],
     ],
 

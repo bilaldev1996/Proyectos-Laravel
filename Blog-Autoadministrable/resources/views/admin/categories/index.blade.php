@@ -12,9 +12,11 @@
 		</div>
 	@endif
 	<div class="card">
-		<div class="card-header">
-			<a href="{{ route('admin.categories.create') }}" class="btn btn-secondary">Agregar categoría</a>
-		</div>
+		@can('admin.categories.create')
+			<div class="card-header">
+				<a href="{{ route('admin.categories.create') }}" class="btn btn-secondary">Agregar categoría</a>
+			</div>
+		@endcan
 		<div class="card-body">
 			<table class="table table-striped">
 				<thead>
@@ -30,18 +32,25 @@
 							<td>{{ $category->id }}</td>
 							<td>{{ $category->name }}</td>
 							<td width="10px">
-								<a href="{{ route('admin.categories.show', $category) }}" class="btn btn-secondary btn-sm">Ver</a>
+								@can('admin.categories.show')
+									<a href="{{ route('admin.categories.show', $category) }}" class="btn btn-secondary btn-sm">Ver</a>
+								@endcan
 							</td>
 							<td width="10px">
-								<a href="{{ route('admin.categories.edit', $category) }}" class="btn btn-primary btn-sm">Editar</a>
-							</td>
-							<td width="10px">
-								<form action="{{ route('admin.categories.destroy', $category) }}" method="POST">
-									@csrf
-									@method('delete')
-									<button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-								</form>
-							</td>
+									@can('admin.categories.edit')
+									<a href="{{ route('admin.categories.edit', $category) }}" class="btn btn-primary btn-sm">Editar</a>
+								    @endcan
+								</td>
+								<td width="10px">
+									@can('admin.categories.destroy')
+										
+									<form action="{{ route('admin.categories.destroy', $category) }}" method="POST">
+										@csrf
+										@method('delete')
+										<button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+									</form>
+									@endcan
+								</td>
 						</tr>
 					@endforeach
 				</tbody>

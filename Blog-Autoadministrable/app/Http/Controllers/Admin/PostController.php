@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -48,9 +49,6 @@ class PostController extends Controller
     public function store(PostRequest $request)
     {
 
-        /* return Storage::put('posts',$request->file('file')); */
-
-
         $post = Post::create($request->all());
 
         if($request->file('file')){
@@ -60,6 +58,8 @@ class PostController extends Controller
                 'url' => $url
             ]);
         }
+
+        Cache::flush(); // Limpiar cache
         
         if($request->status == 'PUBLISHED'){
             $post->tags()->attach($request->tags);
@@ -132,6 +132,9 @@ class PostController extends Controller
             $post->tags()->detach();
         }
 
+        Cache::flush(); // Limpiar cache
+
+
         return redirect()->route('admin.posts.edit', $post)->with('info','El post se actualizó con éxito');
     }
 
@@ -146,7 +149,13 @@ class PostController extends Controller
 
         $this->authorize('author',$post);
 
+        
         $post->delete();
+
+        
+        Cache::flush(); // Limpiar cache
+
+
         return redirect()->route('admin.posts.index')->with('info','El post se eliminó con éxito');
     }
 
